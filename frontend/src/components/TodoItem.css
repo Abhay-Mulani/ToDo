@@ -1,0 +1,39 @@
+.TodoItem {
+	background-color: lightgray;
+	border: 1px solid gray;
+	padding: 2px;
+	margin: 5px;
+	border-radius: 5px;	
+	width: 500px;
+}
+.TodoItem__header{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+#delete-todo-btn{
+	background-color: transparent;
+	border: none;
+}
+#delete-todo-img{
+	color: red;
+	font-size: 32px;
+}
+
+#update-todo-btn{
+	background-color: transparent;
+	border: none;
+}
+#update-todo-img{
+	color: beige;
+	font-size: 32px;
+}
+
+#close-todo-btn{
+	background-color: transparent;
+	border: none;
+}
+#close-todo-img{
+	color: red;
+	font-size: 32px;
+}

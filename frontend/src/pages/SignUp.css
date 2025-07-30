@@ -1,0 +1,19 @@
+.SignUp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+}
+
+#signup_btn{
+
+  background-color: blueviolet;
+  color: white;
+  margin-top: 10px;
+}
+
+#signup_error{
+  color: red;
+}

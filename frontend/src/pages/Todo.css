@@ -1,0 +1,23 @@
+.Todo {
+	display: flex;
+	/*justify-content: center;*/
+	align-items: center;
+	height: 100vh;
+	flex-direction: column;
+}
+
+.Add_Todo{
+	display: flex;
+	flex-direction: row;
+	gap: 5px;
+}
+
+#add-todo-btn{
+	background-color: transparent;
+	border: none;
+}
+
+#add-todo-img{
+	color: green;
+	font-size: 32px;
+}
