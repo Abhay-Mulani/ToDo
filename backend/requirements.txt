@@ -4,9 +4,12 @@ fastapi==0.115.0
 # server to run app
 uvicorn==0.30.6
 
-# to connect to backend database
-mysql-connector-python
+# to connect to PostgreSQL database
+psycopg2-binary
 
 # securing passwords
 passlib==1.7.4
 bcrypt==4.0.1
+
+# for .env support
+python-dotenv
