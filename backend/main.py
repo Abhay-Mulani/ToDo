@@ -3,7 +3,10 @@ from fastapi.middleware.cors import CORSMiddleware
 import greet,todos,auth
 
 app = FastAPI()
-origins = ['http://localhost:3000']
+origins = [
+    'http://localhost:3000',
+    'https://todo-1-vo7j.onrender.com'
+]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
