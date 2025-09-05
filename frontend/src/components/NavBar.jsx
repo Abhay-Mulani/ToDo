@@ -11,7 +11,7 @@ function NavBar(props) {
     console.log('hello from logout Handler');
     console.log('calling backend services');
     // make a backend call with email , password and confirm_password
-  axios.get('http://localhost:8000/signout', {withCredentials : true })
+  axios.get('https://todo-7owg.onrender.com/signout', {withCredentials : true })
          .then((res)=> {
           console.log("-----------------");
           console.log(res);

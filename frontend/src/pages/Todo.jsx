@@ -19,7 +19,7 @@ function Todo() {
 			setTodosList([]);
 			return;
 		}
-		axios.get('http://localhost:8000/api/v1/todos', { params: { user_email: email } })
+	axios.get('https://todo-7owg.onrender.com/api/v1/todos', { params: { user_email: email } })
 			.then((res) => {
 				console.log(res.data);
 				setTodosList(res.data);
@@ -35,7 +35,7 @@ function Todo() {
 		console.log(`deleting todo item with idx=${idx}`);
 		console.log(`deleting todo item ${todoItem}`);
 		const user_email = localStorage.getItem('user_email');
-		axios.delete(`http://localhost:8000/api/v1/todos/delete-by-title/${todoItem.title}?user_email=${user_email}`)
+	axios.delete(`https://todo-7owg.onrender.com/api/v1/todos/delete-by-title/${todoItem.title}?user_email=${user_email}`)
 		.then((res) => {
 			console.log(res.data);
 			console.log(todosList); // 3
@@ -62,7 +62,7 @@ function Todo() {
 			status: newStatus,
 			user_email,
 		};
-		axios.put('http://localhost:8000/api/v1/todos', updatedTodo)
+	axios.put('https://todo-7owg.onrender.com/api/v1/todos', updatedTodo)
 			.then((res) => {
 				// Update the todo in the UI
 				const updatedList = todosList.map((todo, i) =>
@@ -93,7 +93,7 @@ function Todo() {
 			return;
 		}
 		
-		axios.post( 'http://localhost:8000/api/v1/todos'
+	axios.post( 'https://todo-7owg.onrender.com/api/v1/todos'
 			        , todoItem
 						  , {withCredentials : true})
 		.then((res) => {

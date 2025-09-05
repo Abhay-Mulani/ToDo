@@ -40,7 +40,7 @@ function SignUp() {
     
     console.log('calling backend services');
     // make a backend call with email , password and confirm_password
-    axios.post('http://localhost:8000/signup'
+  axios.post('https://todo-7owg.onrender.com/signup'
               , {"username":username,"email": email,"password": password}
               , {withCredentials : true })
          .then((res)=> {
