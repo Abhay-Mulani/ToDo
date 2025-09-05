@@ -71,24 +71,22 @@ def sign_in(response : Response,user_data: dict):
     cursor.execute(query)
     user_record_from_db = cursor.fetchone() 
     if not user_record_from_db: # user record is not found, report error
-      conn.close()
-      raise Exception(f"user with {email} doesnt exists, please signup first")
+        conn.close()
+        raise Exception(f"user with {email} doesnt exists, please signup first")
     else: # user record is found, proceed with sign in
-      print(user_record_from_db)
-      # For psycopg2, fetchone() returns a tuple, so use index
-      # password is the 3rd column (index 3) if columns are (id, username, email, password)
-      stored_password = user_record_from_db[3]
-      if not utils.verify_passwords(password, stored_password): # user entered wrong password
-        conn.close()
-        raise Exception(f"incorrect username or password. Please try again")
-      else: # user record found and passwords match
-        # For now, just return success without session management
-        conn.close()
-        return {"status": "ok", "data": 'user logged in successfully'}
-
+        print(user_record_from_db)
+        # For psycopg2, fetchone() returns a tuple, so use index
+        # password is the 3rd column (index 2) if columns are (id, email, password, username)
+        stored_password = user_record_from_db[2]
+        if not utils.verify_passwords(password, stored_password): # user entered wrong password
+            conn.close()
+            raise Exception(f"incorrect username or password. Please try again")
+        else: # user record found and passwords match
+            # For now, just return success without session management
+            conn.close()
+            return {"status": "ok", "data": 'user logged in successfully'}
   except Exception as e:
-    raise HTTPException(status.HTTP_400_BAD_REQUEST
-                       ,str(e))
+    raise HTTPException(status.HTTP_400_BAD_REQUEST, str(e))
 
 @router.get('/signout')
 def sign_out(request: Request, response : Response): 
