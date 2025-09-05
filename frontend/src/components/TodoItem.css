@@ -1,39 +1,84 @@
 .TodoItem {
-	background-color: lightgray;
-	border: 1px solid gray;
-	padding: 2px;
-	margin: 5px;
-	border-radius: 5px;	
-	width: 500px;
+	background: #f3f4f6;
+	border-radius: 1rem;
+	box-shadow: 0 2px 12px 0 rgba(80, 80, 180, 0.10);
+	padding: 1.2rem 1.5rem 1.1rem 1.5rem;
+	margin: 0.7rem 0;
+	width: 100%;
+	max-width: 520px;
+	display: flex;
+	flex-direction: column;
+	gap: 0.7rem;
+	transition: box-shadow 0.2s, transform 0.1s;
 }
-.TodoItem__header{
+.TodoItem:hover {
+	box-shadow: 0 4px 24px 0 rgba(80, 80, 180, 0.16);
+	transform: translateY(-2px) scale(1.01);
+}
+.TodoItem__header {
 	display: flex;
 	justify-content: space-between;
+	align-items: flex-start;
+	gap: 0.5rem;
+}
+.TodoItem__header h2 {
+	font-size: 1.25rem;
+	font-weight: 700;
+	color: #22223b;
+	margin: 0;
+	flex: 1;
+	word-break: break-word;
+}
+.TodoItem__header__actions {
+	display: flex;
 	align-items: center;
+	gap: 0.3rem;
 }
-#delete-todo-btn{
-	background-color: transparent;
+#delete-todo-btn,
+#update-todo-btn,
+#close-todo-btn {
+	background: transparent;
 	border: none;
+	padding: 0.2rem;
+	border-radius: 0.3rem;
+	cursor: pointer;
+	transition: background 0.15s;
 }
-#delete-todo-img{
-	color: red;
-	font-size: 32px;
+#delete-todo-btn:hover {
+	background: #fee2e2;
+}
+#update-todo-btn:hover {
+	background: #ede9fe;
+}
+#close-todo-btn:hover {
+	background: #fee2e2;
+}
+#delete-todo-img {
+	color: #e11d48;
+	font-size: 1.7rem;
+}
+#update-todo-img {
+	color: #6366f1;
+	font-size: 1.7rem;
+}
+#close-todo-img {
+	color: #e11d48;
+	font-size: 1.7rem;
 }
 
-#update-todo-btn{
-	background-color: transparent;
-	border: none;
+.TodoItem p {
+	margin: 0 0 0.2rem 0;
+	color: #444;
+	font-size: 1.05rem;
+	word-break: break-word;
 }
-#update-todo-img{
-	color: beige;
-	font-size: 32px;
-}
-
-#close-todo-btn{
-	background-color: transparent;
-	border: none;
-}
-#close-todo-img{
-	color: red;
-	font-size: 32px;
+#input__status {
+	margin-top: 0.2rem;
+	padding: 0.5rem 0.8rem;
+	border: 1.5px solid #c7d2fe;
+	border-radius: 0.5rem;
+	font-size: 1rem;
+	outline: none;
+	background: #f8fafc;
+	width: 100%;
 }

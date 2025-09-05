@@ -20,26 +20,43 @@ def sign_up(user_data: dict):
     username = user_data['username']
     email = user_data['email']
     password = user_data['password']
+    print(f"Received signup: username={username}, email={email}")
     encoded_password = utils.encode(password)
     query = f"select * from auth where email = '{email}'"
-    print(query)
+    print(f"Signup query: {query}")
     cursor.execute(query)
     user_record_from_db = cursor.fetchone() 
     if user_record_from_db: # user record is found, report error
+      print(f"Signup error: user with {email} already exists")
       conn.close()
       raise Exception(f"user with {email} already exists, please sign in")
     else: # user record is not found, proceed with sign up
-      query = f"insert into auth(user,email,password) values ('{username}','{email}','{encoded_password}')"
-      cursor.execute(query)
-      conn.commit()
-      conn.close()
+      query = f"insert into auth(username,email,password) values ('{username}','{email}','{encoded_password}')"
+      print(f"Signup insert query: {query}")
+      try:
+        cursor.execute(query)
+        conn.commit()
+        print("Signup successful")
+      except Exception as db_err:
+        print(f"Signup DB error: {db_err}")
+        raise Exception(f"Database error: {db_err}")
+      finally:
+        conn.close()
       return {"status": "ok", "data": 'user signed up successfully'}
   except Exception as e:
-    raise HTTPException(status.HTTP_400_BAD_REQUEST
-                       ,str(e))
+    print(f"Signup Exception: {e}")
+    raise HTTPException(status.HTTP_400_BAD_REQUEST, str(e))
   finally:
-    cursor.close()
-    conn.close()  
+    try:
+      if cursor:
+        cursor.close()
+    except Exception as e:
+      print(f"Error closing cursor: {e}")
+    try:
+      if conn:
+        conn.close()
+    except Exception as e:
+      print(f"Error closing connection: {e}")
 
 @router.post('/signin')
 def sign_in(response : Response,user_data: dict):
@@ -58,8 +75,9 @@ def sign_in(response : Response,user_data: dict):
       raise Exception(f"user with {email} doesnt exists, please signup first")
     else: # user record is found, proceed with sign in
       print(user_record_from_db)
-      # For SQLite with row_factory, access by column name
-      stored_password = user_record_from_db["password"]
+      # For psycopg2, fetchone() returns a tuple, so use index
+      # password is the 3rd column (index 3) if columns are (id, username, email, password)
+      stored_password = user_record_from_db[3]
       if not utils.verify_passwords(password, stored_password): # user entered wrong password
         conn.close()
         raise Exception(f"incorrect username or password. Please try again")

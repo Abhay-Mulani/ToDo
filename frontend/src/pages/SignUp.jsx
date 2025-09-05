@@ -68,18 +68,21 @@ function SignUp() {
   }
 
   return (
-      <form action="submit" className='SignUp'>
-        <label htmlFor="signup_username">UserName</label>
-        <input type="text" id = "signup_username" name="signup_username" placeholder='enter username' onChange={(e) => setUserName(e.target.value)}/>
+    <div className="signup-container">
+      <form className="signup-form" onSubmit={signupHandler}>
+        <h2 className="signup-title">Sign Up</h2>
+        <label htmlFor="signup_username">Username</label>
+        <input type="text" id="signup_username" name="signup_username" placeholder="Enter your username" onChange={e => setUserName(e.target.value)} required />
         <label htmlFor="signup_email">Email</label>
-        <input type="text" id = "signup_email" name="signup_email" placeholder='enter email' onChange={(e) => setEmail(e.target.value)}/>
+        <input type="email" id="signup_email" name="signup_email" placeholder="Enter your email" onChange={e => setEmail(e.target.value)} required />
         <label htmlFor="signup_password">Password</label>
-        <input type="password" id = "signup_password" name="signup_password" placeholder='enter password' onChange={(e) => setPassword(e.target.value)}/>
+        <input type="password" id="signup_password" name="signup_password" placeholder="Enter your password" onChange={e => setPassword(e.target.value)} required />
         <label htmlFor="signup_confirm_password">Confirm Password</label>
-        <input type="password" id = "signup_confirm_password" name="signup_confirm_password" placeholder='enter password again' onChange={(e) => setConfirmPassword(e.target.value)}/>
-        <p id="signup_error">{error}</p>
-        <button id = "signup_btn" type="submit" onClick={(e) => signupHandler(e)}>Sign Up</button>
+        <input type="password" id="signup_confirm_password" name="signup_confirm_password" placeholder="Confirm your password" onChange={e => setConfirmPassword(e.target.value)} required />
+        {error && <div className="error">{error}</div>}
+        <button type="submit">Sign Up</button>
       </form>
+    </div>
   )
 }
 

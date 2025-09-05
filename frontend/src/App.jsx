@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Error from './pages/Error';
 import './App.css';
+import Landing from './pages/Landing';
 import React, { useState } from 'react';
 
 function App() {
@@ -16,14 +17,14 @@ function App() {
 		<div className="App">
 			<BrowserRouter>
 				<NavBar isLoggedIn = {isLoggedIn}/>
-				<Routes>
-					<Route path='/' element = { isLoggedIn ? <Todo/> : <Login setIsLoggedIn = {setIsLoggedIn}/>} ></Route>
-					<Route path='/about' element = {<About/>} ></Route>
-					<Route path='/login' element = {<Login setIsLoggedIn = {setIsLoggedIn}/>} ></Route>
-					<Route path='/signup' element = {<SignUp/>} ></Route>
-					<Route path='/todo' element = {<Todo/>} ></Route>
-					<Route path='*' element = {<Error/>} ></Route>
-				</Routes>
+				   <Routes>
+					   <Route path='/' element = { isLoggedIn ? <Todo/> : <Landing/>} ></Route>
+					   <Route path='/about' element = {<About/>} ></Route>
+					   <Route path='/login' element = {<Login setIsLoggedIn = {setIsLoggedIn}/>} ></Route>
+					   <Route path='/signup' element = {<SignUp/>} ></Route>
+					   <Route path='/todo' element = {<Todo/>} ></Route>
+					   <Route path='*' element = {<Error/>} ></Route>
+				   </Routes>
 			</BrowserRouter>
 		</div>
 	)	

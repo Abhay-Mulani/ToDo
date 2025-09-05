@@ -27,6 +27,8 @@ function Login(props) {
             if (props.setIsLoggedIn) {
               props.setIsLoggedIn(true);
             }
+            // Store user email in localStorage
+            localStorage.setItem('user_email', email);
             navigate('/todo');
           }
           
@@ -45,16 +47,16 @@ function Login(props) {
   }
 
   return (
-    <div className='Login'>
-      <form action="submit" className='SignUp'>
+    <div className="login-container">
+      <form className="login-form" onSubmit={loginHandler}>
+        <h2 className="login-title">Sign In</h2>
         <label htmlFor="signin_email">Email</label>
-        <input type="text" id = "signin_email" name="signin_email" placeholder='enter email' onChange={(e) => setEmail(e.target.value)}/>
+        <input type="text" id="signin_email" name="signin_email" placeholder="Enter your email" onChange={e => setEmail(e.target.value)} autoComplete="username" required />
         <label htmlFor="signin_password">Password</label>
-        <input type="password" id = "signin_password" name="signin_password" placeholder='enter password' onChange={(e) => setPassword(e.target.value)}/>
-        <p id="signin_error">{error}</p>
-        <button id = "signin_btn" type="submit" onClick={(e) => loginHandler(e)}>Log In</button>
-      </form>  
-      
+        <input type="password" id="signin_password" name="signin_password" placeholder="Enter your password" onChange={e => setPassword(e.target.value)} autoComplete="current-password" required />
+        {error && <div className="error">{error}</div>}
+        <button type="submit">Log In</button>
+      </form>
     </div>
   )
 }
